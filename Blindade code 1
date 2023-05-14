@@ -1,0 +1,57 @@
+int vibr = 13;
+
+int led = 10;
+
+int trig = 7;
+
+int echo = 4;
+
+int durat;
+
+int distance;
+
+void setup(){
+
+  Serial.begin(9600);
+
+ pinMode(vibr,OUTPUT);
+
+ pinMode(led,OUTPUT);
+
+ pinMode(echo,INPUT);
+
+ pinMode(trig,OUTPUT);
+
+ digitalWrite(trig,LOW); 
+
+}
+
+void loop(){
+
+ digitalWrite(trig,HIGH);
+
+ delayMicroseconds(10);
+
+ digitalWrite(trig,LOW);
+
+ durat = pulseIn(echo,HIGH);
+
+ distance = durat*0.034/2;
+
+ Serial.println(distance);
+
+ if(distance < 4){
+
+   digitalWrite(vibr,HIGH);
+
+   digitalWrite(led,HIGH);
+
+ } else {
+
+  digitalWrite(vibr,LOW);
+
+  digitalWrite(led,LOW); 
+
+ }
+
+}
